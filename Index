@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TDS & TCS Rate Chart FY 2026-27</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .sticky-header { position: sticky; top: 0; z-index: 10; }
+        tr:nth-child(even) { background-color: #f9fafb; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+    <div class="max-w-6xl mx-auto px-4 py-8">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-blue-900 uppercase tracking-tight">TDS & TCS Rate Chart</h1>
+            <p class="text-xl text-blue-700 font-semibold mt-2">Financial Year 2026-27</p>
+            <p class="text-sm text-gray-500 mt-1">Based on New Tax Code Sections</p>
+        </header>
+
+        <div class="mb-6">
+            <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="Search by Nature, Section, or Keyword (e.g., 'Rent', '194J', '393')..." 
+                class="w-full p-4 rounded-lg border border-gray-300 shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
+        </div>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold border-b-4 border-yellow-500 inline-block mb-4">Tax Deducted at Source (TDS)</h2>
+            <div class="overflow-x-auto bg-white rounded-lg shadow">
+                <table class="w-full text-left border-collapse" id="tdsTable">
+                    <thead>
+                        <tr class="bg-blue-900 text-white text-sm uppercase">
+                            <th class="p-4">Nature of Payment</th>
+                            <th class="p-4">Old Sec</th>
+                            <th class="p-4">New Sec</th>
+                            <th class="p-4">Rate</th>
+                            <th class="p-4">Threshold (p.a.)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr><td class="p-4 font-medium">Salary</td><td class="p-4">192</td><td class="p-4">392</td><td class="p-4 text-blue-600 font-bold">Slab Rates</td><td class="p-4">Slab Rates</td></tr>
+                        <tr><td class="p-4 font-medium">Insurance Commission</td><td class="p-4">194D</td><td class="p-4">393(1)-1(i)</td><td class="p-4 text-blue-600 font-bold">10% (Co) / 2% (Oth)</td><td class="p-4">20,000</td></tr>
+                        <tr><td class="p-4 font-medium">Commission (Other than Insurance)</td><td class="p-4">194H</td><td class="p-4">393(1)-1(ii)</td><td class="p-4 text-blue-600 font-bold">2%</td><td class="p-4">20,000</td></tr>
+                        <tr><td class="p-4 font-medium">Rent: Plant & Machinery</td><td class="p-4">194I</td><td class="p-4">393(1)-2(ii)(a)</td><td class="p-4 text-blue-600 font-bold">2%</td><td class="p-4">50,000 p.m.</td></tr>
+                        <tr><td class="p-4 font-medium">Rent: Land / Building / Furniture</td><td class="p-4">194I</td><td class="p-4">393(1)-2(ii)(b)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">50,000 p.m.</td></tr>
+                        <tr><td class="p-4 font-medium">Purchase of Immovable Property</td><td class="p-4">194IA</td><td class="p-4">393(1)-3(i)</td><td class="p-4 text-blue-600 font-bold">1%</td><td class="p-4">50 Lacs / Property</td></tr>
+                        <tr><td class="p-4 font-medium">Interest (Bank/Post Office)</td><td class="p-4">194A</td><td class="p-4">393(1)-5(ii)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">50,000 (Oth) / 1L (Sr. Cit)</td></tr>
+                        <tr><td class="p-4 font-medium">Interest (Others)</td><td class="p-4">194A</td><td class="p-4">393(1)-5(iii)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">10,000</td></tr>
+                        <tr><td class="p-4 font-medium">Contractor Payments</td><td class="p-4">194C</td><td class="p-4">393(1)-6(i)</td><td class="p-4 text-blue-600 font-bold">1% (Ind/HUF) / 2% (Oth)</td><td class="p-4">30,000 (Inv) / 1L (Agg)</td></tr>
+                        <tr><td class="p-4 font-medium">Professional Fees / Royalty</td><td class="p-4">194J</td><td class="p-4">393(1)-6(iii)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">50,000 per service</td></tr>
+                        <tr><td class="p-4 font-medium">Technical Fees / Call Center</td><td class="p-4">194J</td><td class="p-4">393(1)-6(iii)</td><td class="p-4 text-blue-600 font-bold">2%</td><td class="p-4">50,000 per service</td></tr>
+                        <tr><td class="p-4 font-medium">Dividend</td><td class="p-4">194</td><td class="p-4">393(1)-(7)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">10,000</td></tr>
+                        <tr><td class="p-4 font-medium">Purchase of Goods</td><td class="p-4">194Q</td><td class="p-4">393(1)-(8)(ii)</td><td class="p-4 text-blue-600 font-bold">0.1%</td><td class="p-4">50 Lacs</td></tr>
+                        <tr><td class="p-4 font-medium">Virtual Digital Assets (Crypto)</td><td class="p-4">194S</td><td class="p-4">393(1)-(8)(iv)</td><td class="p-4 text-blue-600 font-bold">1%</td><td class="p-4">10,000 / 50,000</td></tr>
+                        <tr><td class="p-4 font-medium">Payment to Partner of Firm</td><td class="p-4">194T</td><td class="p-4">393(3)-(7)</td><td class="p-4 text-blue-600 font-bold">10%</td><td class="p-4">20,000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="mb-12">
+            <h2 class="text-2xl font-bold border-b-4 border-green-500 inline-block mb-4">Tax Collected at Source (TCS)</h2>
+            <div class="overflow-x-auto bg-white rounded-lg shadow">
+                <table class="w-full text-left border-collapse" id="tcsTable">
+                    <thead>
+                        <tr class="bg-gray-800 text-white text-sm uppercase">
+                            <th class="p-4">Nature of Goods/Transaction</th>
+                            <th class="p-4">Old Sec</th>
+                            <th class="p-4">New Sec</th>
+                            <th class="p-4">TCS Rate</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr><td class="p-4 font-medium">Alcoholic Liquor for Human Consumption</td><td class="p-4">206C(1)</td><td class="p-4">394(1)-A(1)</td><td class="p-4 text-green-600 font-bold">2%</td></tr>
+                        <tr><td class="p-4 font-medium">Sale of Scrap</td><td class="p-4">206C(1)</td><td class="p-4">394(1)-A(4)</td><td class="p-4 text-green-600 font-bold">2%</td></tr>
+                        <tr><td class="p-4 font-medium">Motor Vehicle (> 10 Lacs)</td><td class="p-4">206C(1F)</td><td class="p-4">394(1)-A(6)</td><td class="p-4 text-green-600 font-bold">1%</td></tr>
+                        <tr><td class="p-4 font-medium">LRS (Education loan via Fin Inst)</td><td class="p-4">206C(1G)</td><td class="p-4">394(1)-A(7)</td><td class="p-4 text-green-600 font-bold">0%</td></tr>
+                        <tr><td class="p-4 font-medium">LRS (Other purpose > 10 Lacs)</td><td class="p-4">206C(1G)</td><td class="p-4">394(1)-A(7)</td><td class="p-4 text-green-600 font-bold">20%</td></tr>
+                        <tr><td class="p-4 font-medium">Overseas Tour Package</td><td class="p-4">206C(1G)</td><td class="p-4">394(1)-A(8)</td><td class="p-4 text-green-600 font-bold">2% (upto 7L) / 5% / 20%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <footer class="text-center text-gray-500 text-xs py-8 border-t">
+            <p>Generated based on J D M & Co. Chart for Private Circulation.</p>
+        </footer>
+    </div>
+
+    <script>
+        function filterTable() {
+            const input = document.getElementById("searchInput");
+            const filter = input.value.toUpperCase();
+            const tables = ["tdsTable", "tcsTable"];
+            
+            tables.forEach(tableId => {
+                const table = document.getElementById(tableId);
+                const tr = table.getElementsByTagName("tr");
+                for (let i = 1; i < tr.length; i++) {
+                    const rowText = tr[i].textContent.toUpperCase();
+                    tr[i].style.display = rowText.indexOf(filter) > -1 ? "" : "none";
+                }
+            });
+        }
+    </script>
+</body>
+</html>
